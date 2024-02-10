@@ -12,17 +12,23 @@
         <div class="row">
             <h1 class="text-center">Elite: Dangerous Engineering Calculator</h1>
             <div class="col">
-                <form>
+                <form action="/index" method="POST" enctype="multipart/form-data">
+                    {{ form.csrf_token }}
                     <div class="mb-3">
-                        <label for="required_materials" class="form-label">List of required materials</label>
-                        <textarea class="form-control" name="" id="required_materials" cols="30" rows="10"></textarea>                      
+                        {{ form.required_materials.label(class="form-label") }}
+                        {{ form.required_materials(class="form-control", cols="30", rows="10") }}
+                        <!-- <label for="required_materials" class="form-label">List of required materials</label>
+                        <textarea class="form-control" name="" id="required_materials" cols="30" rows="10"></textarea>                       -->
                     </div>
                     <div class="mb-3">
-                        <label for="logs_file" class="form-label">Latest pilot's logs file</label>
-                        <input class="form-control form-control-sm" id="logs_file" type="file">
+                        {{ form.logs_file.label(class="form-label") }}
+                        {{ form.logs_file(class="form-control form-control-sm") }}
+                        <!-- <label for="logs_file" class="form-label">Latest pilot's logs file</label>
+                        <input class="form-control form-control-sm" id="logs_file" type="file"> -->
                     </div>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary mb-3">Calculate</button>
+                        {{ form.submit(class="btn btn-primary mb-3") }}
+                        <!-- <button type="submit" class="btn btn-primary mb-3">Calculate</button> -->
                     </div>
 
                 </form>
