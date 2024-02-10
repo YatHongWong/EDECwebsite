@@ -110,12 +110,13 @@ class Calculator():
         required_dict = {}
         lines = materials_list.split("\n")
         for line in lines:
-            name, count = line.split(": ")
-            with connect("EDEC.db") as con:
-                cur = con.cursor()
-                cur.execute("SELECT * FROM Materials WHERE name = ? AND type = ?", (name,type))
-                if cur.fetchone() != None:
-                    required_dict[name] = count.replace("\n", "")
+            if line.strip():    # get rid of empty lines
+                name, count = line.split(": ")
+                with connect("EDEC.db") as con:
+                    cur = con.cursor()
+                    cur.execute("SELECT * FROM Materials WHERE name = ? AND type = ?", (name,type))
+                    if cur.fetchone() != None:
+                        required_dict[name] = count.replace("\n", "")
         return required_dict
     
 
